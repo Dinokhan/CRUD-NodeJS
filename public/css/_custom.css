@@ -118,3 +118,14 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
 .jumbotron { 
     background-color: #f9fcff !important;
 }
+button.btn.btn-primary.btn-sm,button.btn.btn-danger.btn-sm,button.btn.btn-info.btn-sm{
+    margin-bottom: 13;
+    margin-top: 15;
+}
+.table-dark {
+    color: #fff;
+    background-color: darkslategrey;
+}
+table.table.table-sm.table-dark.table-hover.table-bordered.text-center[id='lainnya'] {
+    margin-top: 55px;
+}
