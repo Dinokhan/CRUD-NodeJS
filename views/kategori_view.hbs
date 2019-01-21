@@ -5,7 +5,8 @@
 			<div class="col-md-12"><h2>Data Kategori</h2></div>
 			<div class="col-md-4">
 				<form action="" method="POST" role="form">
-					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o fa-1x"></i> Save</button> 				
+					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o fa-1x"></i> Save</button>
+					<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-refresh fa-1x"></i> Reset</button> 
 					<div class="form-group row">
 						<label for="inputPassword" class="col-sm-2 col-form-label">Nama</label>
 						<div class="col-sm-10">
@@ -27,8 +28,8 @@
 						<tr>
 							<th scope="row">1</th>
 							<td class="text-left">Mark</td>
-							<td>Edit</td>
-							<td>Delete</td>
+							<td><a href="javascript:void(0);" class="btn btn-outline-info btn-sm edit" data-id="{{ id }}"><i class="fa fa-pencil-square fa-1x"></i></a></td>
+							<td><a href="javascript:void(0);" class="btn btn-outline-danger btn-sm delete" data-id="{{ id }}"><i class="fa fa-trash fa-1x"></i></a></td>
 						</tr>
 					</tbody>
 				</table>
