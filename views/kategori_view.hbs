@@ -1,11 +1,50 @@
 {{> head}}
 <div class="jumbotron">
-	<div class="container">
-		<h1>Halaman Kategori</h1>
-		<p>Contents ...</p>
-		<p>
-			<a class="btn btn-primary btn-lg">Learn more</a>
-		</p>
-	</div>
-</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12"><h2>Data Kategori</h2></div>
+			<div class="col-md-4">
+				<form action="" method="POST" role="form">
+					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o fa-1x"></i> Save</button> 				
+					<div class="form-group row">
+						<label for="inputPassword" class="col-sm-2 col-form-label">Nama</label>
+						<div class="col-sm-10">
+							<input type="text" name="" class="form-control" id="" placeholder="Nama kategori produk">
+						</div>
+					</div> 
+				</form>
+			</div>
+			<div class="col-md-8">
+				<table class="table table-sm table-dark table-hover table-bordered text-center">
+					<thead class="">
+						<tr>
+							<th scope="col" width="2%">No</th>
+							<th scope="col" width="25%" class="text-left">Nama</th>
+							<th scope="col" width="8%" colspan="2">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">1</th>
+							<td class="text-left">Mark</td>
+							<td>Edit</td>
+							<td>Delete</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div><!-- .//Row -->
+	</div><!-- .//Container -->
+</div> <!-- .//Jumbotron -->
+
+
+
+
+
+
+
+
+
+
+
 {{> footer}}

@@ -1,11 +1,97 @@
 {{> head}}
 <div class="jumbotron">
-	<div class="container">
-		<h1>Halaman Penjualan</h1>
-		<p>Contents ...</p>
-		<p>
-			<a class="btn btn-primary btn-lg">Learn more</a>
-		</p>
-	</div>
-</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12"><h2>Penjualan</h2></div>
+			<div class="col-md-12">
+				<form action="" method="POST" role="form">
+					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o fa-1x"></i> Save</button>  
+					<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-refresh fa-1x"></i> Reset</button>  
+					<button type="submit" class="btn btn-info btn-sm"><i class="fa fa-print fa-1x"></i> Cetak Struk</button>  
+					<div class="form-row">
+						<div class="col">
+							<label for="inputPassword" class="col-sm-12 col-form-label">Kode Barang</label>
+							<input type="text" class="form-control " >
+						</div>
+						<div class="col">
+							<label for="inputPassword" class="col-sm-12 col-form-label">Nama Barang</label>
+							<input type="text" class="form-control" >
+						</div>
+						<div class="col">
+							<fieldset disabled>
+								<label for="inputPassword" class="col-sm-12 col-form-label">Harga</label>
+								<input type="text" class="form-control" >
+							</fieldset>
+						</div>
+						<div class="col">
+							<label for="inputPassword" class="col-sm-12 col-form-label">Jumlah</label>
+							<input type="text" class="form-control" >
+						</div>
+						<div class="col">
+							<fieldset disabled>
+								<label for="inputPassword" class="col-sm-12 col-form-label">Total</label>
+								<input type="text" class="form-control" >
+							</fieldset>
+						</div>
+						<div class="col"> 
+								<label for="inputPassword" class="col-sm-12 col-form-label">Bayar</label>
+								<input type="text" class="form-control" > 
+						</div>
+						<div class="col">
+							<label for="inputPassword" class="col-sm-12 col-form-label">Kembali</label>
+							<input type="text" class="form-control" >
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-4">
+				<div class="alert alert-success" role="alert">
+					<h4 class="alert-heading">Well done!</h4>
+					<hr> 
+					<p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+					<hr>
+					<p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<table class="table table-sm table-dark table-hover table-bordered text-center">
+					<thead class="">
+						<tr>
+							<th scope="col" width="2%">No</th>
+							<th scope="col" width="25%" class="text-left">Nama</th>
+							<th scope="col" width="25%" class="text-left">Alamat</th>
+							<th scope="col" width="25%" class="text-left">Pos</th> 
+							<th scope="col" width="25%" class="text-left">No Tlp</th>
+							<th scope="col" width="25%" class="text-left">No Hp</th>
+							<th scope="col" width="8%" colspan="2">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">1</th>
+							<td class="text-left">Mark</td>
+							<td class="text-left">jl soekarno hatta no. A27</td>
+							<td class="text-left">63473</td>
+							<td class="text-left">(0352)876876</td>
+							<td class="text-left">098709870987</td>
+							<td><a href="javascript:void(0);" class="btn btn-outline-info btn-sm edit" data-id="{{ id }}"><i class="fa fa-pencil-square fa-1x"></i></a></td>
+							<td><a href="javascript:void(0);" class="btn btn-outline-danger btn-sm delete" data-id="{{ id }}"><i class="fa fa-trash fa-1x"></i></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div><!-- .//Row -->
+	</div><!-- .//Container -->
+</div> <!-- .//Jumbotron -->
+
+
+
+
+
+
+
+
+
+
+
 {{> footer}}
