@@ -4,42 +4,43 @@
 		<div class="row">
 			<div class="col-md-12"><h2>Data Customer</h2></div>
 			<div class="col-md-4">
-				<form action="" method="POST" role="form">
-					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o fa-1x"></i> Save</button> 				
+				<form action="/save_customer" method="POST" role="form">
+					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o fa-1x"></i> Save</button> 
+					<button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-refresh fa-1x"></i> Reset</button>   
 					<div class="form-group row">
 						<label for="inputPassword" class="col-sm-2 col-form-label">Nama</label>
 						<div class="col-sm-10">
-							<input type="text" name="" class="form-control" id="" placeholder="Nama Customer">
+							<input type="text" name="nama" class="form-control" id="" placeholder="Nama Customer">
 						</div>
 					</div> 
 					<div class="form-group row">
 						<label for="inputPassword" class="col-sm-2 col-form-label">Alamat</label>
 						<div class="col-sm-10">
-							<input type="text" name="" class="form-control" id="" placeholder="Alamat Customer">
+							<input type="text" name="alamat" class="form-control" id="" placeholder="Alamat Customer">
 						</div>
 					</div> 
 					<div class="form-group row">
 						<label for="inputPassword" class="col-sm-2 col-form-label">Pos</label>
 						<div class="col-sm-10">
-							<input type="text" name="" class="form-control" id="" placeholder="Kode Pos Customer">
+							<input type="text" name="pos" class="form-control" id="" placeholder="Kode Pos Customer">
 						</div>
 					</div> 
 					<div class="form-group row">
 						<label for="inputPassword" class="col-sm-2 col-form-label">Telpon</label>
 						<div class="col-sm-10">
-							<input type="text" name="" class="form-control" id="" placeholder="No Telpon Customer">
+							<input type="text" name="notlp" class="form-control" id="" placeholder="No Telpon Customer">
 						</div>
 					</div> 
 					<div class="form-group row">
 						<label for="inputPassword" class="col-sm-2 col-form-label">HP</label>
 						<div class="col-sm-10">
-							<input type="text" name="" class="form-control" id="" placeholder="No Handphone Customer">
+							<input type="text" name="nohp" class="form-control" id="" placeholder="No Handphone Customer">
 						</div>
 					</div> 
 				</form>
 			</div>
 			<div class="col-md-8">
-				<table class="table table-sm table-dark table-hover table-bordered text-center" id="lainnya">
+				<table class="table table-sm table-dark table-hover table-bordered text-center" id="data">
 					<thead class="">
 						<tr>
 							<th scope="col" width="2%">No</th>
@@ -52,16 +53,27 @@
 						</tr>
 					</thead>
 					<tbody>
+						{{#each results}}
 						<tr>
-							<th scope="row">1</th>
-							<td class="text-left">Mark</td>
-							<td class="text-left">jl soekarno hatta no. A27</td>
-							<td class="text-left">63473</td>
-							<td class="text-left">(0352)876876</td>
-							<td class="text-left">098709870987</td>
-							<td><a href="javascript:void(0);" class="btn btn-outline-info btn-sm edit" data-id="{{ id }}"><i class="fa fa-pencil-square fa-1x"></i></a></td>
+							<th scope="row">{{id}}</th>
+							<td class="text-left">{{nama}}</td>
+							<td class="text-left">{{alamat}}</td>
+							<td class="text-left">{{pos}}</td>
+							<td class="text-left">{{notlp}}</td>
+							<td class="text-left">{{nohp}}</td>
+							<td>
+								<a href="javascript:void(0);" class="btn btn-outline-info btn-sm edit" 
+									data-id="{{ id }}" 
+									data-nama="{{nama}}" 
+									data-alamat="{{alamat}}"
+									data-notlp="{{notlp}}"
+									data-nohp="{{nohp}}"
+									data-pos="{{pos}}"> <i class="fa fa-pencil-square fa-1x"></i>
+								</a>
+							</td>
 							<td><a href="javascript:void(0);" class="btn btn-outline-danger btn-sm delete" data-id="{{ id }}"><i class="fa fa-trash fa-1x"></i></a></td>
 						</tr>
+						{{/each}}
 					</tbody>
 				</table>
 			</div>
@@ -69,14 +81,107 @@
 	</div><!-- .//Container -->
 </div> <!-- .//Jumbotron -->
 
+<!-- Edit Customer Modal-->
+<form action="/update_customer" method="post">
+ <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Customer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">  
+      	<div class="form-group row">
+      		<label for="inputPassword" class="col-sm-2 col-form-label">Nama</label>
+      		<div class="col-sm-10">
+      			<input type="text" name="nama" class="form-control nama" placeholder="Nama Customer" required>
+      		</div>
+      	</div>
+      	<div class="form-group row">
+      		<label for="inputPassword" class="col-sm-2 col-form-label">Alamat</label>
+      		<div class="col-sm-10">
+      			<input type="text" name="alamat" class="form-control alamat" placeholder="Alamat Customer" required>
+      		</div>
+      	</div> 
+      	<div class="form-group row">
+      		<label for="inputPassword" class="col-sm-2 col-form-label">No tlp</label>
+      		<div class="col-sm-10">
+      			<input type="text" name="notlp" class="form-control notlp" placeholder="Notlp Customer" required>
+      		</div>
+      	</div> 
+      	<div class="form-group row">
+      		<label for="inputPassword" class="col-sm-2 col-form-label">No hp</label>
+      		<div class="col-sm-10">
+      			<input type="text" name="nohp" class="form-control nohp" placeholder="Nohp Customer" required>
+      		</div>
+      	</div> 
+      	<div class="form-group row">
+      		<label for="inputPassword" class="col-sm-2 col-form-label">Pos</label>
+      		<div class="col-sm-10">
+      			<input type="text" name="pos" class="form-control pos" placeholder="Pos Customer" required>
+      		</div>
+      	</div>  
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" name="id" class="id">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<!-- Delete Customer Modal-->
+<form id="add-row-form" action="/delete_customer" method="post">
+ <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title" id="myModalLabel">Delete Customer</h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     </div>
+     <div class="modal-body">
+       <strong>Are You Sure To Delete This Data?</strong>
+     </div>
+     <div class="modal-footer">
+      <input type="hidden" name="id" class="form-control id_delete" required>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="submit" class="btn btn-success">Delete</button>
+    </div>
+  </div>
+</div>
+</div>
+</form>
 
+<script src="/assets/js/jquery-3.3.1.js"></script>
+<script src="/assets/js/bootstrap.js"></script>
+<script>
+  $(document).ready(function(){
+	  //showing data to modal for edit record
+      $('#data').on('click','.edit',function(){
+        var id = $(this).data('id');
+        var nama = $(this).data('nama');
+        var alamat = $(this).data('alamat');
+        var notlp = $(this).data('notlp');
+        var nohp = $(this).data('nohp');
+        var pos = $(this).data('pos');
+        $('#EditModal').modal('show');
+        $('.id').val(id);
+        $('.nama').val(nama);
+        $('.alamat').val(alamat);
+        $('.notlp').val(notlp);
+        $('.nohp').val(nohp);
+        $('.pos').val(pos);
+      });
+			//showing modal for delete record
+		$('#data').on('click','.delete',function(){
+        var id = $(this).data('id');
+        $('#DeleteModal').modal('show');
+        $('.id_delete').val(id);
+      });
 
-
-
-
-
-
-
-
-
+    });
+  </script> 
 {{> footer}}

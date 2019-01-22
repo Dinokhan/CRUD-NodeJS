@@ -126,6 +126,6 @@ button.btn.btn-primary.btn-sm,button.btn.btn-danger.btn-sm,button.btn.btn-info.b
     color: #fff;
     background-color: darkslategrey;
 }
-table.table.table-sm.table-dark.table-hover.table-bordered.text-center[id='lainnya'] {
+table.table.table-sm.table-dark.table-hover.table-bordered.text-center[id='data'] {
     margin-top: 55px;
 }

@@ -1,21 +1,69 @@
 {{> head}}
+<script type="text/javascript">
+	var model = {
+		Processing: ko.observable(true)
+	}
+	model.masterModel = {
+		kode_kat: "",
+		kategori: "", 
+	}
+	var material = {
+		Recordmaterial: ko.mapping.fromJS(model.masterModel),
+		Listmaterial: ko.observableArray([]),
+		Mode: ko.observable(''),
+		FilterText: ko.observable(''),
+		DataFilter: ko.observableArray(['kategori']),
+		FilterValue: ko.observable('kategori'),
+	}
+	material.drawKategori = function(){
+		$("input[name=txtKategori]").tokenInput("/filterKategori", { 
+			zindex: 700,
+			allowFreeTagging: false,
+			placeholder: 'Input Type Here!!',
+			tokenValue: 'kode_kat',
+			propertyToSearch: "kategori",
+			tokenLimit: 1,
+			theme: "facebook",
+			onAdd: function (item) {
+				var po = material.Recordmaterial;
+				po.kategori(item.kategori);
+				po.kode_kat(item.kode_kat);
+			},
+			onDelete: function(item){
+				var po = material.Recordmaterial;
+				po.kategori("");
+				po.kode_kat("");
+			},
+			resultsFormatter: function(item){
+				return "<li>"+item.kategori+"</li>"
+			},
+			onResult: function (results) {
+				return results;
+			},
+			onCachedResult: function(res){
+				return res;
+			}
+		});
+	} 
+</script>
+
 <div class="jumbotron">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12"><h2>Penjualan</h2></div>
-			<div class="col-md-12">
+			<div class="col-md-12" data-bind="with:material">
 				<form action="" method="POST" role="form">
 					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o fa-1x"></i> Save</button>  
 					<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-refresh fa-1x"></i> Reset</button>  
 					<button type="submit" class="btn btn-info btn-sm"><i class="fa fa-print fa-1x"></i> Cetak Struk</button>  
-					<div class="form-row">
+					<div class="form-row" data-bind="with:Recordmaterial">
 						<div class="col">
 							<label for="inputPassword" class="col-sm-12 col-form-label">Kode Barang</label>
 							<input type="text" class="form-control " >
 						</div>
 						<div class="col">
 							<label for="inputPassword" class="col-sm-12 col-form-label">Nama Barang</label>
-							<input type="text" class="form-control" >
+							<input type="text" name="txtKategori" data-bind="value:kategori" id="" required="" class="form-control">
 						</div>
 						<div class="col">
 							<fieldset disabled>
@@ -32,15 +80,7 @@
 								<label for="inputPassword" class="col-sm-12 col-form-label">Total</label>
 								<input type="text" class="form-control" >
 							</fieldset>
-						</div>
-						<div class="col"> 
-								<label for="inputPassword" class="col-sm-12 col-form-label">Bayar</label>
-								<input type="text" class="form-control" > 
-						</div>
-						<div class="col">
-							<label for="inputPassword" class="col-sm-12 col-form-label">Kembali</label>
-							<input type="text" class="form-control" >
-						</div>
+						</div> 
 					</div>
 				</form>
 			</div>
@@ -57,28 +97,32 @@
 				<table class="table table-sm table-dark table-hover table-bordered text-center">
 					<thead class="">
 						<tr>
-							<th scope="col" width="2%">No</th>
-							<th scope="col" width="25%" class="text-left">Customer</th>
+							<!-- <th scope="col" width="2%">No</th> -->
+							<th scope="col" width="25%" class="text-left">Pembeli</th>
 							<th scope="col" width="25%" class="text-left">Barang</th>
 							<th scope="col" width="25%" class="text-left">Kategori</th>
-							<th scope="col" width="25%" class="text-left">Qty</th> 
-							<th scope="col" width="25%" class="text-left">Harga</th>
+							<th scope="col" width="7%" class="text-left">Qty</th> 
+							<th scope="col" width="10%" class="text-left">Harga</th>
 							<th scope="col" width="25%" class="text-left">Total</th> 
-							<th scope="col" width="8%" colspan="2">Action</th>
+							<!-- <th scope="col" width="25%" class="text-left">Tanggal</th>  -->
+							<!-- <th scope="col" width="8%" colspan="2">Action</th> -->
 						</tr>
 					</thead>
 					<tbody>
+						{{#each results}}
 						<tr>
-							<th scope="row">1</th>
-							<td class="text-left">Mark</td>
-							<td class="text-left">Dell Latitude E6430</td>
-							<td class="text-left">Elektronik</td>
-							<td class="text-left">000</td>
-							<td class="text-left">0000000</td>
-							<td class="text-left">0000000</td> 
-							<td><a href="javascript:void(0);" class="btn btn-outline-info btn-sm edit" data-id="{{ id }}"><i class="fa fa-pencil-square fa-1x"></i></a></td>
-							<td><a href="javascript:void(0);" class="btn btn-outline-danger btn-sm delete" data-id="{{ id }}"><i class="fa fa-trash fa-1x"></i></a></td>
+							<!-- <th scope="row">{{id}}</th> -->
+							<td class="text-left">{{customer}}</td>
+							<td class="text-left">{{produk}}</td>
+							<td class="text-left">{{kategori}}</td>
+							<td class="text-left">{{qty}}</td>
+							<td class="text-left">{{harga}}</td>
+							<td class="text-left">{{total}}</td> 
+							<!-- <td class="text-left" id="tanggal">{{tanggal}}</td>  -->
+							<!-- <td><a href="javascript:void(0);" class="btn btn-outline-info btn-sm edit" data-id="{{ id }}"><i class="fa fa-pencil-square fa-1x"></i></a></td> -->
+							<!-- <td><a href="javascript:void(0);" class="btn btn-outline-danger btn-sm delete" data-id="{{ id }}"><i class="fa fa-trash fa-1x"></i></a></td> -->
 						</tr>
+						{{/each}}
 					</tbody>
 				</table>
 			</div>
@@ -86,14 +130,9 @@
 	</div><!-- .//Container -->
 </div> <!-- .//Jumbotron -->
 
-
-
-
-
-
-
-
-
-
-
+<script type="text/javascript">
+	$(document).ready(function () {
+		material.drawKategori();
+	}
+</script>
 {{> footer}}
